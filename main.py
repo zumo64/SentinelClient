@@ -27,8 +27,8 @@ def connect_redis_cluster():
 # Connection to the Sentinel Agents
 def connect_sentinel():
     sentinel_list = [
-        ('172.31.44.45', 8001),
-        ('172.31.43.246', 8001)
+        ('re1', 8001),
+        ('re2', 8001)
     ]
     ssl_certfile="/Users/christianzumbiehl/.ssh/proxy-certificate.pem"
     ssl_keyfile = "/Users/christianzumbiehl/.ssh/proxy_key.pem"
@@ -50,7 +50,7 @@ if __name__ == '__main__':
     print_hi('Sentinel Connect..')
     sentinel = connect_sentinel()
     # Connect to the DB "Stream"
-    db_name = 'chatbot'
+    db_name = 'dbtest'
     r = sentinel.master_for(db_name, socket_timeout=0.5,)
     r.set('hello','world')
     value4 = r.get('hello')
