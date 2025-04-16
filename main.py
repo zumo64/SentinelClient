@@ -34,13 +34,14 @@ def connect_sentinel():
     ssl_keyfile = "/Users/christianzumbiehl/.ssh/proxy_key.pem"
     ssl_ca_certs = ssl_certfile
 
-    sentinel = Sentinel(sentinel_list, socket_timeout=5, password='redis', ssl=False)
+    # Without TLS
+    #sentinel = Sentinel(sentinel_list, socket_timeout=5, password='redis', ssl=False)
 
     # This WORKS with TLS enabled
-    #sentinel = Sentinel(sentinel_list, socket_timeout=0.5, password='redis', ssl=True, ssl_certfile=ssl_certfile, ssl_keyfile=ssl_keyfile,ssl_ca_certs=ssl_ca_certs,ssl_cert_reqs="required")
+    #sentinel = Sentinel(sentinel_list, socket_timeout=5, password='redis', ssl=True, ssl_certfile=ssl_certfile, ssl_keyfile=ssl_keyfile,ssl_ca_certs=ssl_ca_certs,ssl_cert_reqs="required")
 
     #  THIS WORKS as well
-    #sentinel = Sentinel(sentinel_list, socket_timeout=0.5, password='redis',ssl=True,ssl_cert_reqs="none" )
+    sentinel = Sentinel(sentinel_list, socket_timeout=5, password='redis',ssl=True,ssl_cert_reqs="none" )
     return sentinel
 
 
